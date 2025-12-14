@@ -6,7 +6,11 @@ import requests
 import json
 from typing import Optional, Dict, Any
 
-load_dotenv('../app.env')
+
+if not load_dotenv('../../pf.env'):
+    print("Warning: .env file not loaded (missing or empty)")
+else:
+    print(" .env file loaded successfully")
 
 # Initialize Firebase Admin
 credentials_string = os.getenv('FIREBASE_CREDENTIALS_JSON', '')
