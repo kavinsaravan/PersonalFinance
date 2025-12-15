@@ -629,6 +629,8 @@ const Transactions = () => {
                             '& .MuiDataGrid-cell': {
                                 py: 1.5,
                                 fontSize: '0.95rem',
+                                display: 'flex',
+                                alignItems: 'center',
                             },
                             '& .MuiDataGrid-columnHeader': {
                                 background: 'linear-gradient(135deg, #f8f9ff 0%, #e8ebfc 100%)',

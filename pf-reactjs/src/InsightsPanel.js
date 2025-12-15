@@ -95,7 +95,7 @@ const InsightsPanel = () => {
         if (typeof value === 'number') {
             // Format as currency if it looks like money
             if (Math.abs(value) > 0.01) {
-                return `$${value.toFixed(2)}`;
+                return `$${Math.abs(value).toFixed(2)}`;
             }
             return value.toString();
         }
