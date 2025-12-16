@@ -553,12 +553,6 @@ Both the frontend and backend are configured for deployment on Render.
 3. Publish Directory: `build`
 4. Set environment variable: `REACT_APP_API_URL=https://your-backend-url.onrender.com`
 
-### Alternative Deployment Options
-
-- **Frontend**: Vercel, Netlify, AWS S3 + CloudFront
-- **Backend**: Heroku, AWS EC2, Google Cloud Run, DigitalOcean
-- **Database**: MongoDB Atlas (recommended for production)
-
 ## Architecture
 
 ### System Architecture
