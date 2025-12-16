@@ -53,29 +53,10 @@ Personal Finance is a modern application designed to help users track and analyz
 
 - **Modern User Interface**
   - Responsive Material-UI design
-  - Beautiful gradient-based authentication screens
+  - Intuitive authentication screens
   - Tabbed interface for easy navigation (Transactions and Insights)
   - Advanced data grid with customizable columns
   - User profile management with dropdown menu
-
-### Advanced Features
-
-- **Comprehensive Logging**
-  - Application-wide logging with rotating file handlers
-  - Dedicated OpenAI API performance tracking
-  - Error tracking with full stack traces
-  - Separate log files for different concerns
-
-- **Flexible Data Import**
-  - Multiple date format support (YYYY-MM-DD, MM/DD/YYYY, DD/MM/YYYY, ISO)
-  - Bulk CSV upload with validation
-  - JSON API for programmatic access
-
-- **Error Handling**
-  - Comprehensive try-catch blocks throughout
-  - Specific error messages for debugging
-  - Fallback mechanisms for AI failures
-  - User-friendly error displays
 
 ## Tech Stack
 
