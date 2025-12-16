@@ -605,21 +605,6 @@ Both the frontend and backend are configured for deployment on Render.
    - AI analyzes matching transactions and generates insights
    - Insights returned as structured JSON
 
-### State Management
-
-- **Frontend**: React Context API (AuthContext) for authentication state
-- **Backend**: Stateless REST API with token-based authentication
-- **Database**: MongoDB for persistent storage
-
-### Security Considerations
-
-- All API endpoints (except signup/signin) require authentication
-- Tokens verified using Firebase Admin SDK
-- CORS configured to restrict allowed origins
-- Environment variables for sensitive credentials
-- Password hashing handled by Firebase
-- MongoDB credentials stored in environment variables
-
 ## Contributing
 
 Contributions are welcome! Please follow these steps:
@@ -630,45 +615,5 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-### Code Style Guidelines
 
-- **Frontend**: Follow React best practices, use functional components with hooks
-- **Backend**: Follow PEP 8 Python style guide
-- **Commits**: Use conventional commit messages
-- **Testing**: Write tests for new features
 
-### Development Workflow
-
-1. Create an issue describing the feature or bug
-2. Wait for approval/discussion
-3. Implement changes in a feature branch
-4. Ensure all tests pass
-5. Submit PR with detailed description
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-## Acknowledgments
-
-- OpenAI for GPT-4o-mini API
-- Firebase for authentication services
-- Material-UI for beautiful React components
-- MongoDB for flexible data storage
-- Render for reliable hosting
-
-## Support
-
-For issues, questions, or contributions, please:
-
-- Open an issue on GitHub
-- Contact the maintainers
-- Check existing documentation
-
----
-
-**Built with passion for better financial management**
-
-Last Updated: December 2025
