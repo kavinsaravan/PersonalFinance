@@ -1,421 +1,693 @@
-# Personal Finance Tracker
+# Personal Finance - AI-Powered Transaction Management System
 
-A full-stack AI-powered personal finance management application that helps users track expenses, categorize transactions, and gain intelligent insights into their spending habits through natural language queries.
+A sophisticated full-stack web application for managing personal finances with intelligent AI-powered transaction categorization and natural language insights generation. Built with React, Flask, MongoDB, and OpenAI's GPT models.
 
-## Summary
+## Table of Contents
 
-Personal Finance Tracker is a modern web application that combines transaction management with artificial intelligence to provide users with a comprehensive view of their financial activities. The application features secure user authentication, intuitive transaction management, AI-powered automatic categorization, and a natural language insights engine that allows users to query their financial data conversationally.
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Running the Application](#running-the-application)
+- [API Documentation](#api-documentation)
+- [Deployment](#deployment)
+- [Architecture](#architecture)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Overview
+
+Personal Finance is a modern Single Page Application (SPA) designed to help users track and analyze their financial transactions with the power of artificial intelligence. The application leverages OpenAI's GPT-4o-mini model to automatically categorize transactions and generate insights from natural language queries, making financial data analysis accessible and intuitive.
 
 ## Features
 
-### Authentication & Security
-- **User Registration & Sign-in**: Secure authentication powered by Firebase
-- **Protected Routes**: Token-based authorization for API endpoints
-- **Session Management**: Persistent user sessions with automatic token refresh
+### Core Functionality
 
-### Transaction Management
-- **Transaction CRUD Operations**: Create, read, update, and delete financial transactions
-- **Data Grid Interface**: Interactive table with sorting, filtering, and pagination
-- **Bulk CSV Upload**: Import multiple transactions from CSV files
-- **Transaction Fields**: Date, merchant, category, amount tracking
-- **Real-time Updates**: Instant reflection of changes in the UI
+- **Transaction Management**
+  - View all transactions in an interactive data grid with sorting and pagination
+  - Create new transactions manually with real-time validation
+  - Upload bulk transactions via CSV files
+  - Real-time filtering and search capabilities
 
-### AI-Powered Features
-- **Smart Categorization**: Automatic transaction categorization using OpenAI GPT-4o-mini
-  - Intelligent merchant recognition
-  - 17+ predefined spending categories
-  - Error detection and validation
-- **Natural Language Insights**: Query your finances using everyday language
-  - Examples: "How much did I spend on groceries this month?"
-  - Automatic time period extraction
-  - AI-generated financial analysis and recommendations
-  - Visual presentation of insights
+- **AI-Powered Categorization**
+  - Automatic transaction categorization using OpenAI GPT-4o-mini
+  - 17 predefined categories: Office, Technology, Travel, Meals, Marketing, Utilities, Education, Entertainment, Transportation, Insurance, Professional, Rent, Security, Maintenance, Taxes, Payroll, Other
+  - Intelligent merchant name analysis
+  - Error detection and correction mechanisms for API responses
 
-### Data Visualization & Analysis
-- **Transaction Overview**: Comprehensive view of all financial activities
-- **Category Breakdown**: Spending analysis by category
-- **Time-based Filtering**: Query transactions by custom date ranges
-- **Search & Sort**: Find specific transactions quickly
+- **Natural Language Insights**
+  - Ask questions about your finances in plain English
+  - Intelligent time window extraction (e.g., "last month", "this quarter", "past 90 days")
+  - AI-generated insights based on transaction patterns
+  - JSON-formatted analysis for structured data consumption
 
-### Monitoring & Logging
-- **Comprehensive Logging**: Application, API, and error logging
-- **API Call Tracking**: Monitor OpenAI API usage and performance
-- **Error Detection**: Automatic logging of categorization mistakes
-- **Debug Endpoints**: View logs through dedicated API endpoints
+- **User Authentication & Security**
+  - Secure sign up and sign in with Firebase Authentication
+  - Custom token-based authorization
+  - Session persistence via local storage
+  - Protected API endpoints with token verification
+  - Email verification support
 
-## Technology Stack
+- **Modern User Interface**
+  - Responsive Material-UI design
+  - Beautiful gradient-based authentication screens
+  - Tabbed interface for easy navigation (Transactions and Insights)
+  - Advanced data grid with customizable columns
+  - User profile management with dropdown menu
+
+### Advanced Features
+
+- **Comprehensive Logging**
+  - Application-wide logging with rotating file handlers
+  - Dedicated OpenAI API performance tracking
+  - Error tracking with full stack traces
+  - Separate log files for different concerns
+
+- **Flexible Data Import**
+  - Multiple date format support (YYYY-MM-DD, MM/DD/YYYY, DD/MM/YYYY, ISO)
+  - Bulk CSV upload with validation
+  - JSON API for programmatic access
+
+- **Error Handling**
+  - Comprehensive try-catch blocks throughout
+  - Specific error messages for debugging
+  - Fallback mechanisms for AI failures
+  - User-friendly error displays
+
+## Tech Stack
 
 ### Frontend
-- **React.js** (v19.1.0) - UI framework
-- **Material-UI** (v7.2.0) - Component library
-  - @mui/material - Core components
-  - @mui/icons-material - Icon set
-  - @mui/x-data-grid - Advanced data table
-- **Emotion** - CSS-in-JS styling
-- **Firebase SDK** - Client-side authentication
-- **React Scripts** (v5.0.1) - Build tooling
+
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| React | 19.1.0 | Core UI framework |
+| Material-UI (MUI) | 7.2.0 | Component library and design system |
+| @mui/x-data-grid | 8.8.0 | Advanced data grid for transactions |
+| @mui/icons-material | 7.2.0 | Icon library |
+| @emotion/react | 11.14.0 | CSS-in-JS styling |
+| @emotion/styled | 11.14.1 | Styled components |
+| Firebase SDK | Latest | Authentication |
+| React Scripts | 5.0.1 | Build tooling |
+| Testing Library | Latest | Unit and integration testing |
 
 ### Backend
-- **Python** (3.x) - Server runtime
-- **Flask** (v2.3.2) - Web framework
-- **Flask-CORS** (v4.0.0) - Cross-origin resource sharing
-- **PyMongo** (v4.4.1) - MongoDB driver
-- **Firebase Admin SDK** (v7.0.0) - Server-side authentication
-- **OpenAI SDK** (v1.0.0+) - AI integration
-- **Pydantic** (v2.11.3) - Data validation
-- **Python-dotenv** (v1.0.0) - Environment configuration
 
-### Database
-- **MongoDB** - NoSQL database for transaction storage
-  - Document-based storage
-  - SCRAM-SHA-1 authentication
-  - Configurable connection parameters
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| Flask | 2.3.2 | Web framework |
+| FastAPI | 0.115.12 | Alternative API framework |
+| OpenAI API | 1.0.0+ | AI/ML integration (GPT-4o-mini) |
+| PyMongo | 4.4.1 | MongoDB driver |
+| Firebase Admin SDK | 7.0.0 | Authentication verification |
+| Pydantic | 2.11.3 | Data validation |
+| flask-cors | 4.0.0 | CORS support |
+| python-dotenv | 1.0.0 | Environment management |
+| pandas | Latest | Data manipulation |
+| requests | 2.32.3 | HTTP client |
 
-### External APIs & Services
-- **Firebase Authentication** - User management and authentication
-- **OpenAI API** (GPT-4o-mini) - AI-powered features
-  - Transaction categorization
-  - Financial insights generation
-  - Natural language processing
-- **MongoDB Atlas** (optional) - Cloud database hosting
+### Database & Authentication
 
-### Development Tools
-- **ESLint** - JavaScript linting
-- **Jest** - Testing framework
-- **Babel** - JavaScript transpilation
-- **Dotenv** - Environment variable management
+- **Database**: MongoDB (NoSQL document database)
+- **Authentication**: Firebase (Google's authentication platform)
+- **Hosting**: Render (both frontend and backend)
 
 ## Project Structure
 
 ```
 PersonalFinance/
-├── Client/
-│   └── pf-reactjs/          # React frontend application
-│       ├── src/
-│       │   ├── App.js               # Main application component
-│       │   ├── AuthContext.js       # Authentication context provider
-│       │   ├── AuthComponent.js     # Authentication UI
-│       │   ├── TransactionTable.js  # Transaction management
-│       │   ├── InsightsPanel.js     # AI insights interface
-│       │   ├── AppBar.js            # Navigation bar
-│       │   ├── api.js               # API utility functions
-│       │   └── firebaseConfig.js    # Firebase configuration
-│       └── package.json
+├── pf-reactjs/                    # React frontend application
+│   ├── public/                    # Static assets
+│   │   ├── index.html
+│   │   ├── manifest.json
+│   │   ├── favicon.ico
+│   │   └── logos (192x192, 512x512)
+│   ├── src/                       # React source code
+│   │   ├── App.js                 # Main app component with tab navigation
+│   │   ├── App.css                # Global styles
+│   │   ├── theme.js               # Material-UI theme customization
+│   │   ├── AuthContext.js         # Auth state management (Context API)
+│   │   ├── AuthScreen.js          # Auth wrapper component
+│   │   ├── SignIn.js              # Sign in form
+│   │   ├── SignUp.js              # Sign up form
+│   │   ├── AppBar.js              # Navigation bar with user menu
+│   │   ├── TransactionTable.js    # Main transactions view with DataGrid
+│   │   ├── InsightsPanel.js       # AI-powered insights query interface
+│   │   ├── firebaseConfig.js      # Firebase SDK initialization
+│   │   ├── api.js                 # API utility functions
+│   │   ├── index.js               # React DOM render entry point
+│   │   ├── reportWebVitals.js     # Performance metrics
+│   │   ├── setupTests.js          # Test configuration
+│   │   └── index.css              # Base styles
+│   ├── build/                     # Production build output
+│   ├── node_modules/              # npm dependencies
+│   ├── package.json               # npm configuration
+│   ├── .env                       # Environment variables
+│   └── README.md                  # Frontend documentation
 │
-└── Server/
-    └── pf-api-server/       # Flask backend server
-        ├── app.py                   # Main Flask application
-        ├── firebase_auth.py         # Firebase authentication logic
-        ├── requirements.txt         # Python dependencies
-        ├── app.env                  # Environment variables (not in repo)
-        └── Tools/                   # Utility scripts
+└── pf-api-server/                 # Python Flask backend
+    ├── app.py                     # Main Flask application (804 lines)
+    ├── firebase_auth.py           # Firebase authentication helper
+    ├── mongo.py                   # MongoDB connection example
+    ├── requirements.txt           # Python dependencies
+    ├── .flaskenv                  # Flask environment config
+    ├── Procfile                   # Render deployment config
+    ├── Tools/                     # Utility scripts
+    │   ├── csvfileimport.py       # CSV import tool
+    │   └── xmlfileimport.py       # XML import tool
+    ├── app.log                    # Application logs
+    ├── openai_api.log             # OpenAI API call logs
+    ├── api_errors.log             # Error tracking logs
+    ├── sample_sales_data.csv      # Sample data
+    └── myenv/                     # Python virtual environment
 ```
 
 ## Prerequisites
 
-Before running this application, ensure you have:
+Before you begin, ensure you have the following installed:
 
-- **Node.js** (v14.x or higher) and npm
+- **Node.js** (v14.0.0 or higher)
+- **npm** (v6.0.0 or higher)
 - **Python** (v3.8 or higher)
-- **MongoDB** instance (local or cloud)
-- **Firebase Project** with Authentication enabled
-- **OpenAI API Key** with access to GPT-4o-mini
+- **pip** (Python package manager)
+- **MongoDB** (v4.0 or higher) - Local or cloud instance
+- **Firebase Account** - For authentication services
+- **OpenAI API Key** - For AI-powered features
 
-## Installation & Setup
+## Installation
 
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/yourusername/PersonalFinance.git
 cd PersonalFinance
 ```
 
-### 2. Backend Setup
-
-#### Install Python Dependencies
+### 2. Frontend Setup
 
 ```bash
-cd Server/pf-api-server
+cd pf-reactjs
+npm install
+```
+
+### 3. Backend Setup
+
+```bash
+cd ../pf-api-server
+
+# Create and activate virtual environment
+python -m venv myenv
+
+# On macOS/Linux:
+source myenv/bin/activate
+
+# On Windows:
+myenv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-#### Configure Environment Variables
+## Configuration
 
-Create an `app.env` file in the `Server` directory:
+### Frontend Configuration
+
+Create a `.env` file in the `pf-reactjs` directory:
+
+```env
+REACT_APP_API_URL=http://localhost:5000
+```
+
+Update `src/firebaseConfig.js` with your Firebase project credentials:
+
+```javascript
+const firebaseConfig = {
+  apiKey: "your-api-key",
+  authDomain: "your-auth-domain",
+  projectId: "your-project-id",
+  storageBucket: "your-storage-bucket",
+  messagingSenderId: "your-messaging-sender-id",
+  appId: "your-app-id"
+};
+```
+
+### Backend Configuration
+
+Create a `pf.env` file in the `pf-api-server` directory:
 
 ```env
 # OpenAI Configuration
-OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_API_KEY=sk-your-openai-api-key-here
 
 # MongoDB Configuration
 MONGO_HOST=localhost
 MONGO_PORT=27017
-MONGO_DB_NAME=your_database_name
+MONGO_DB_NAME=finance_db
 MONGO_DB_USERNAME=your_username
 MONGO_DB_PASSWORD=your_password
 
-# Firebase Configuration (JSON string)
-FIREBASE_CREDENTIALS_JSON={"type":"service_account","project_id":"..."}
+# Firebase Admin SDK
+FIREBASE_CREDENTIALS_JSON={"type": "service_account", "project_id": "...", ...}
 
 # Server Configuration
 PF_SERVER_PORT=5000
 ```
 
-#### Set Up Firebase Admin
+### Firebase Admin SDK Setup
 
 1. Go to Firebase Console > Project Settings > Service Accounts
-2. Generate a new private key (JSON file)
-3. Convert the JSON content to a string and add to `FIREBASE_CREDENTIALS_JSON` in `app.env`
+2. Generate a new private key (downloads JSON file)
+3. Copy the entire JSON content into the `FIREBASE_CREDENTIALS_JSON` environment variable
 
-### 3. Frontend Setup
+### MongoDB Setup
 
-#### Install Node Dependencies
-
-```bash
-cd Client/pf-reactjs
-npm install
-```
-
-#### Configure Environment Variables
-
-Create a `.env` file in the `Client/pf-reactjs` directory:
-
-```env
-REACT_APP_API_URL=http://localhost:5000
-
-# Firebase Web Configuration
-REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
-REACT_APP_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-REACT_APP_FIREBASE_PROJECT_ID=your_project_id
-REACT_APP_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-REACT_APP_FIREBASE_APP_ID=your_app_id
-```
-
-#### Set Up Firebase Client Configuration
-
-Update `src/firebaseConfig.js` with your Firebase web app configuration.
-
-## How to Start the Application
-
-### Start the Backend Server
+If running MongoDB locally:
 
 ```bash
-cd Server/pf-api-server
+# Start MongoDB
+mongod --dbpath /path/to/data/directory
+
+# Or use MongoDB Atlas for cloud-hosted database
+# Update MONGO_HOST with Atlas connection string
+```
+
+## Running the Application
+
+### Development Mode
+
+#### 1. Start the Backend Server
+
+```bash
+cd pf-api-server
+source myenv/bin/activate  # On Windows: myenv\Scripts\activate
 python app.py
 ```
 
-The Flask server will start on `http://localhost:5000` (or the port specified in `PF_SERVER_PORT`)
+The Flask server will start on `http://localhost:5000`
 
-### Start the Frontend Application
-
-In a new terminal:
+#### 2. Start the Frontend Development Server
 
 ```bash
-cd Client/pf-reactjs
+cd pf-reactjs
 npm start
 ```
 
-The React app will start on `http://localhost:3000` and automatically open in your browser.
+The React app will open in your browser at `http://localhost:3000`
 
-## API Endpoints
+### Production Build
 
-### Authentication
-- `POST /api/signup` - Create new user account
-- `POST /api/signin` - Sign in existing user
-- `GET /api/profile` - Get user profile (requires authentication)
+#### Build Frontend
 
-### Transactions
-- `GET /api/entries` - Retrieve all transactions
-- `POST /api/entries` - Create new transaction
-- `POST /api/uploadcsv` - Bulk upload transactions from CSV
-- `POST /api/check_transaction` - Validate transaction data
+```bash
+cd pf-reactjs
+npm run build
+```
 
-### AI Features
-- `POST /api/categorize` - Categorize transaction using AI
-- `GET /api/insights` - Get AI-generated financial insights
+This creates an optimized production bundle in the `build/` directory.
 
-### Monitoring
-- `GET /api/logs/errors` - View error logs
-- `GET /api/logs/openai` - View OpenAI API call logs
+#### Run Tests
 
-## Usage Examples
+```bash
+# Frontend tests
+cd pf-reactjs
+npm test
 
-### Adding a Transaction
+# Backend tests (if available)
+cd pf-api-server
+pytest
+```
 
-1. Navigate to the Transactions tab
-2. Click "Add Transaction"
-3. Fill in date, merchant, category, and amount
-4. Click "Save"
+## API Documentation
 
-### AI Categorization
+### Base URL
 
-1. View any transaction with "Uncategorized" status
-2. Click the "Categorize" button
-3. AI will suggest the most appropriate category
-4. Accept or modify the suggestion
+- Development: `http://localhost:5000`
+- Production: `https://your-api-url.onrender.com`
 
-### Getting Financial Insights
+### Authentication Endpoints
 
-1. Navigate to the Insights tab
-2. Enter a natural language query, such as:
-   - "What did I spend on dining last month?"
-   - "Show my top spending categories this week"
-   - "How much have I spent on technology?"
-3. Click "Get Insights"
-4. View AI-generated analysis and recommendations
+#### POST `/api/signup`
 
-### CSV Upload
+Register a new user.
 
-1. Prepare a CSV file with columns: date, merchant, amount, category (optional)
-2. Click the upload icon in the Transactions table
-3. Select your CSV file
-4. Transactions will be imported and appear in the table
+**Request Body:**
+```json
+{
+  "email": "user@example.com",
+  "password": "securepassword"
+}
+```
 
-## Configuration
+**Response:**
+```json
+{
+  "message": "User created successfully",
+  "customToken": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjE...",
+  "userId": "abc123xyz"
+}
+```
 
-### Transaction Categories
+#### POST `/api/signin`
 
-The following categories are available:
-- Office
-- Technology
-- Travel
-- Meals
-- Marketing
-- Utilities
-- Education
-- Entertainment
-- Transportation
-- Insurance
-- Professional
-- Rent
-- Security
-- Maintenance
-- Taxes
-- Payroll
-- Other
+Authenticate an existing user.
 
-Categories can be customized in `Server/pf-api-server/app.py` (line 318-324)
+**Request Body:**
+```json
+{
+  "email": "user@example.com",
+  "password": "securepassword"
+}
+```
 
-### OpenAI Model Configuration
+**Response:**
+```json
+{
+  "message": "Sign-in successful",
+  "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjE...",
+  "userId": "abc123xyz"
+}
+```
 
-The application uses GPT-4o-mini by default. To change the model, update the `model` parameter in:
-- `app.py` line 333 (categorization)
-- `app.py` line 464 (time window extraction)
-- `app.py` line 542 (insights generation)
+#### GET `/api/profile`
+
+Get authenticated user profile.
+
+**Headers:**
+```
+Authorization: Bearer <idToken>
+```
+
+**Response:**
+```json
+{
+  "uid": "abc123xyz",
+  "email": "user@example.com",
+  "emailVerified": false,
+  "displayName": null
+}
+```
+
+### Transaction Endpoints
+
+#### GET `/api/entries`
+
+Fetch all transactions for the authenticated user.
+
+**Headers:**
+```
+Authorization: Bearer <idToken>
+```
+
+**Response:**
+```json
+[
+  {
+    "_id": "507f1f77bcf86cd799439011",
+    "date": "2024-01-15",
+    "merchant": "Amazon",
+    "amount": 49.99,
+    "category": "Technology",
+    "userId": "abc123xyz"
+  }
+]
+```
+
+#### POST `/api/entries`
+
+Create a new transaction.
+
+**Headers:**
+```
+Authorization: Bearer <idToken>
+```
+
+**Request Body:**
+```json
+{
+  "date": "2024-01-15",
+  "merchant": "Starbucks",
+  "amount": 5.50
+}
+```
+
+**Response:**
+```json
+{
+  "message": "Entry added successfully",
+  "id": "507f1f77bcf86cd799439012"
+}
+```
+
+#### POST `/api/categorize`
+
+Get AI-powered category suggestion for a merchant.
+
+**Headers:**
+```
+Authorization: Bearer <idToken>
+```
+
+**Request Body:**
+```json
+{
+  "merchant": "Starbucks"
+}
+```
+
+**Response:**
+```json
+{
+  "category": "Meals"
+}
+```
+
+#### POST `/api/uploadcsv`
+
+Bulk upload transactions via CSV.
+
+**Headers:**
+```
+Authorization: Bearer <idToken>
+```
+
+**Request Body:**
+```json
+{
+  "data": [
+    {
+      "date": "2024-01-15",
+      "merchant": "Target",
+      "amount": 78.45
+    },
+    {
+      "date": "2024-01-16",
+      "merchant": "Shell Gas",
+      "amount": 42.00
+    }
+  ]
+}
+```
+
+**Response:**
+```json
+{
+  "message": "Bulk upload successful",
+  "inserted_ids": ["507f...", "508f..."],
+  "count": 2
+}
+```
+
+### Insights Endpoints
+
+#### GET `/api/insights`
+
+Generate AI-powered insights from natural language query.
+
+**Headers:**
+```
+Authorization: Bearer <idToken>
+```
+
+**Query Parameters:**
+- `query` (required): Natural language question about finances
+
+**Example Request:**
+```
+GET /api/insights?query=What%20did%20I%20spend%20on%20food%20last%20month?
+```
+
+**Response:**
+```json
+{
+  "insights": {
+    "total_spent": 345.67,
+    "transaction_count": 23,
+    "average_transaction": 15.03,
+    "top_merchants": ["Starbucks", "Chipotle", "Whole Foods"],
+    "summary": "You spent $345.67 on food last month across 23 transactions..."
+  }
+}
+```
+
+### Logging Endpoints
+
+#### GET `/api/logs/errors`
+
+View error logs (requires authentication).
+
+#### GET `/api/logs/openai`
+
+View OpenAI API call logs (requires authentication).
+
+### Response Codes
+
+- `200` - Success
+- `201` - Created
+- `400` - Bad Request (validation error)
+- `401` - Unauthorized (missing or invalid token)
+- `404` - Not Found
+- `500` - Internal Server Error
 
 ## Deployment
 
-### Backend Deployment
+### Render Deployment (Recommended)
 
-The Flask application can be deployed to:
-- Heroku (Procfile included)
-- AWS EC2/Elastic Beanstalk
-- Google Cloud Run
-- DigitalOcean App Platform
+Both the frontend and backend are configured for deployment on Render.
 
-**Environment Variables**: Ensure all environment variables from `app.env` are configured in your hosting platform.
+#### Backend Deployment
 
-### Frontend Deployment
+1. Connect your GitHub repository to Render
+2. Create a new Web Service
+3. Configure environment variables (from `pf.env`)
+4. Build Command: `pip install -r requirements.txt`
+5. Start Command: `python app.py` (defined in Procfile)
 
-The React app can be deployed to:
-- Vercel
-- Netlify
-- Render
-- GitHub Pages
+#### Frontend Deployment
 
-**Build Command**: `npm run build`
-**Environment Variables**: Set `REACT_APP_API_URL` to your production backend URL.
+1. Create a new Static Site on Render
+2. Build Command: `npm install && npm run build`
+3. Publish Directory: `build`
+4. Set environment variable: `REACT_APP_API_URL=https://your-backend-url.onrender.com`
 
-### Production Considerations
+### Alternative Deployment Options
 
-1. **Security**:
-   - Use HTTPS for all communications
-   - Rotate API keys regularly
-   - Implement rate limiting
-   - Enable CORS only for trusted domains
+- **Frontend**: Vercel, Netlify, AWS S3 + CloudFront
+- **Backend**: Heroku, AWS EC2, Google Cloud Run, DigitalOcean
+- **Database**: MongoDB Atlas (recommended for production)
 
-2. **Database**:
-   - Use MongoDB Atlas for production
-   - Enable authentication and encryption
-   - Set up regular backups
+## Architecture
 
-3. **Monitoring**:
-   - Set up error tracking (e.g., Sentry)
-   - Monitor API usage and costs
-   - Configure log rotation
+### System Architecture
 
-## Development
-
-### Running Tests
-
-**Frontend**:
-```bash
-cd Client/pf-reactjs
-npm test
+```
+┌─────────────────┐         ┌─────────────────┐         ┌─────────────────┐
+│                 │         │                 │         │                 │
+│  React Frontend │◄────────┤  Flask Backend  │◄────────┤   MongoDB       │
+│  (Port 3000)    │  REST   │  (Port 5000)    │         │   Database      │
+│                 │   API   │                 │         │                 │
+└────────┬────────┘         └────────┬────────┘         └─────────────────┘
+         │                           │
+         │                           │
+         ▼                           ▼
+┌─────────────────┐         ┌─────────────────┐
+│                 │         │                 │
+│  Firebase Auth  │         │  OpenAI API     │
+│                 │         │  (GPT-4o-mini)  │
+│                 │         │                 │
+└─────────────────┘         └─────────────────┘
 ```
 
-**Backend**:
-```bash
-cd Server/pf-api-server
-python -m pytest
-```
+### Data Flow
 
-### Code Style
+1. **Authentication Flow**
+   - User signs up/in through React frontend
+   - Backend creates Firebase user and issues custom tokens
+   - Client stores token in localStorage
+   - All API requests include token in Authorization header
+   - Backend verifies token before processing requests
 
-- Frontend follows ESLint React configuration
-- Backend follows PEP 8 Python style guide
+2. **Transaction Categorization Flow**
+   - User creates transaction with merchant name
+   - Frontend sends merchant name to `/api/categorize`
+   - Backend calls OpenAI API with GPT-4o-mini
+   - AI returns suggested category from predefined list
+   - Category is returned to frontend for user confirmation
+   - Transaction is saved to MongoDB with category
 
-## Troubleshooting
+3. **Insights Generation Flow** (3-step process)
+   - User enters natural language query in Insights panel
+   - Backend extracts time window from query using AI
+   - MongoDB queries transactions within date range
+   - AI analyzes matching transactions and generates insights
+   - Insights returned as structured JSON
 
-### Common Issues
+### State Management
 
-**Backend won't start**:
-- Verify all environment variables are set correctly
-- Check MongoDB connection parameters
-- Ensure Python dependencies are installed
+- **Frontend**: React Context API (AuthContext) for authentication state
+- **Backend**: Stateless REST API with token-based authentication
+- **Database**: MongoDB for persistent storage
 
-**Frontend can't connect to backend**:
-- Verify `REACT_APP_API_URL` is correct
-- Check CORS settings in `app.py`
-- Ensure backend server is running
+### Security Considerations
 
-**Authentication fails**:
-- Verify Firebase configuration
-- Check Firebase credentials JSON
-- Ensure Firebase Authentication is enabled in console
-
-**AI features not working**:
-- Verify OpenAI API key is valid
-- Check API quota and billing
-- Review error logs at `/api/logs/errors`
+- All API endpoints (except signup/signin) require authentication
+- Tokens verified using Firebase Admin SDK
+- CORS configured to restrict allowed origins
+- Environment variables for sensitive credentials
+- Password hashing handled by Firebase
+- MongoDB credentials stored in environment variables
 
 ## Contributing
 
-Contributions are welcome! Please:
+Contributions are welcome! Please follow these steps:
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes with clear commit messages
-4. Test thoroughly
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+### Code Style Guidelines
+
+- **Frontend**: Follow React best practices, use functional components with hooks
+- **Backend**: Follow PEP 8 Python style guide
+- **Commits**: Use conventional commit messages
+- **Testing**: Write tests for new features
+
+### Development Workflow
+
+1. Create an issue describing the feature or bug
+2. Wait for approval/discussion
+3. Implement changes in a feature branch
+4. Ensure all tests pass
+5. Submit PR with detailed description
 
 ## License
 
-This project is licensed under the MIT License.
-
-## Support
-
-For issues, questions, or contributions, please open an issue in the GitHub repository.
-
-## Acknowledgments
-
-- Firebase for authentication services
-- OpenAI for AI capabilities
-- Material-UI for React components
-- MongoDB for database solutions
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
-**Built with React, Flask, MongoDB, and AI**
+## Acknowledgments
 
+- OpenAI for GPT-4o-mini API
+- Firebase for authentication services
+- Material-UI for beautiful React components
+- MongoDB for flexible data storage
+- Render for reliable hosting
+
+## Support
+
+For issues, questions, or contributions, please:
+
+- Open an issue on GitHub
+- Contact the maintainers
+- Check existing documentation
+
+---
+
+**Built with passion for better financial management**
+
+Last Updated: December 2025
