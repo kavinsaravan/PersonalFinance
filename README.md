@@ -22,6 +22,9 @@ A sophisticated full-stack web application for managing personal finances with i
 
 Personal Finance is a modern application designed to help users track and analyze their financial transactions with the power of artificial intelligence. The application leverages OpenAI's GPT-4o-mini model to automatically categorize user transactions and generate insights from natural language queries, making financial data analysis accessible and intuitive.
 
+## Demo
+
+
 ## Features
 
 ### Core Functionality
