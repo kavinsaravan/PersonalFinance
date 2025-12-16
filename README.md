@@ -16,7 +16,6 @@ A sophisticated full-stack web application for managing personal finances with i
 - [Deployment](#deployment)
 - [Architecture](#architecture)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Overview
 
