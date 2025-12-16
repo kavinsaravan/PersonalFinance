@@ -24,6 +24,7 @@ Personal Finance is a modern application designed to help users track and analyz
 
 ## Demo
 
+https://go.screenpal.com/watch/cTlDhBnYxWb
 
 ## Features
 
